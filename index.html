@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кариана — студия красоты на Луначарского</title>
+<meta name="description" content="Студия красоты «Кариана» в Санкт-Петербурге: косметология, ногтевой сервис, парикмахерский зал, массаж, солярий. Запись по телефону 925-26-68.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ RESET ============ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; }
+
+  /* ============ TOKENS ============ */
+  :root {
+    --bg: #14100f;
+    --bg-2: #1c1715;
+    --bg-3: #221c19;
+    --cream: #f6efe9;
+    --cream-dim: #cfc4bb;
+    --pink: #e7b4a6;
+    --pink-soft: #f0c9bd;
+    --gold: #c9a86a;
+    --line: rgba(246, 239, 233, 0.14);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Jost", "Segoe UI", sans-serif;
+    --maxw: 1200px;
+    --radius: 22px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ============ TYPO ============ */
+  h1, h2, h3, .serif { font-family: var(--serif); font-weight: 500; line-height: 1.05; }
+  .script { font-family: var(--serif); font-style: italic; color: var(--pink); font-weight: 400; }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    font-weight: 400;
+  }
+
+  /* ============ BUTTONS ============ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--pink);
+    color: #2a1d19;
+    padding: 15px 30px;
+    border-radius: 100px;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: transform .3s ease, background .3s ease, box-shadow .3s ease;
+    box-shadow: 0 12px 30px rgba(231, 180, 166, 0.18);
+  }
+  .btn:hover { background: var(--pink-soft); transform: translateY(-2px); box-shadow: 0 16px 38px rgba(231, 180, 166, 0.3); }
+  .btn--ghost {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--line);
+    box-shadow: none;
+  }
+  .btn--ghost:hover { border-color: var(--pink); color: var(--pink); background: transparent; transform: translateY(-2px); }
+
+  /* ============ HEADER ============ */
+  .header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 100;
+    padding: 22px 0;
+    transition: background .4s ease, padding .4s ease, backdrop-filter .4s ease;
+  }
+  .header.scrolled {
+    background: rgba(20, 16, 15, 0.88);
+    backdrop-filter: blur(14px);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-mark {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--pink);
+    display: grid; place-items: center;
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--pink);
+  }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.05; }
+  .logo-text b { font-family: var(--serif); font-weight: 600; font-size: 20px; letter-spacing: .04em; }
+  .logo-text span { font-size: 9px; letter-spacing: .34em; text-transform: uppercase; color: var(--cream-dim); }
+
+  .nav-links { display: flex; gap: 34px; }
+  .nav-links a {
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--cream-dim);
+    transition: color .25s ease; position: relative; padding-bottom: 4px;
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0;
+    background: var(--pink); transition: width .3s ease;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta { display: flex; align-items: center; gap: 18px; }
+  .phone {
+    font-family: var(--serif); font-size: 19px; color: var(--cream); letter-spacing: .02em;
+  }
+  .phone:hover { color: var(--pink); }
+  .burger { display: none; flex-direction: column; gap: 5px; padding: 6px; }
+  .burger span { width: 24px; height: 1.5px; background: var(--cream); transition: .3s; }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 140px 0 70px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 60% at 78% 42%, rgba(231,180,166,0.14), transparent 65%),
+      radial-gradient(ellipse 40% 40% at 15% 85%, rgba(201,168,106,0.10), transparent 70%),
+      linear-gradient(160deg, #171211 0%, #14100f 55%, #1a1310 100%);
+  }
+  .hero::after {
+    content: "";
+    position: absolute; right: -8%; top: 50%; transform: translateY(-50%);
+    width: min(46vw, 560px); aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    box-shadow: inset 0 0 0 34px rgba(231,180,166,0.035), 0 0 120px rgba(231,180,166,0.10);
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; z-index: 2; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; }
+
+  .hero-title {
+    font-size: clamp(52px, 9vw, 118px);
+    letter-spacing: -0.01em;
+    margin: 18px 0 8px;
+  }
+  .hero-title .script { display: block; font-size: .78em; line-height: .9; margin-top: 4px; }
+  .hero-sub { max-width: 430px; color: var(--cream-dim); margin: 26px 0 34px; font-size: 16px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+  .hero-art {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 240px 240px var(--radius) var(--radius);
+    background:
+      radial-gradient(circle at 30% 25%, rgba(240,201,189,0.45), transparent 55%),
+      linear-gradient(180deg, #2b211d 0%, #1d1715 100%);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+  .hero-art::before {
+    content: "🦋";
+    font-size: clamp(90px, 14vw, 150px);
+    filter: drop-shadow(0 20px 50px rgba(231,180,166,.35));
+  }
+  .hero-art small {
+    position: absolute; bottom: 22px; left: 0; right: 0; text-align: center;
+    font-size: 10px; letter-spacing: .34em; text-transform: uppercase; color: var(--cream-dim);
+  }
+
+  .hero-features {
+    position: relative; z-index: 2;
+    display: flex; flex-wrap: wrap; gap: 34px;
+    margin-top: 54px; padding-top: 30px; border-top: 1px solid var(--line);
+  }
+  .feature { display: flex; align-items: center; gap: 13px; }
+  .feature i {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: grid; place-items: center; font-style: normal; font-size: 17px;
+    border: 1px solid var(--line); color: var(--pink);
+  }
+  .feature b { display: block; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; }
+  .feature span { font-size: 12px; color: var(--cream-dim); }
+
+  /* ============ SECTION SHELL ============ */
+  section { padding: 100px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; margin-bottom: 52px; flex-wrap: wrap; }
+  .section-head h2 { font-size: clamp(38px, 5.4vw, 68px); margin-top: 12px; }
+  .section-head p { max-width: 360px; color: var(--cream-dim); font-size: 15px; }
+
+  /* ============ ABOUT ============ */
+  .about { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 60px; align-items: center; }
+  .about-copy h2 { font-size: clamp(34px, 4.6vw, 58px); margin: 14px 0 22px; }
+  .about-copy p { color: var(--cream-dim); margin-bottom: 16px; font-size: 15.5px; }
+  .about-sign { font-family: var(--serif); font-style: italic; font-size: 26px; color: var(--pink); margin-top: 22px; }
+
+  .about-visual {
+    position: relative;
+    aspect-ratio: 5 / 4;
+    border-radius: var(--radius);
+    background:
+      radial-gradient(circle at 70% 20%, rgba(231,180,166,0.25), transparent 55%),
+      linear-gradient(135deg, #2a211d, #1a1513 70%);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    display: grid; place-items: center;
+  }
+  .about-visual::before {
+    content: "✦";
+    font-size: 90px; color: var(--pink); opacity: .55;
+    text-shadow: 0 0 60px rgba(231,180,166,.5);
+  }
+  .about-visual .tag {
+    position: absolute; left: 22px; bottom: 22px;
+    background: rgba(20,16,15,.72); border: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+    padding: 12px 18px; border-radius: 100px;
+    font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: var(--cream-dim);
+  }
+
+  /* ============ SERVICES ============ */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .service {
+    background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 30px 28px 26px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    position: relative; overflow: hidden;
+  }
+  .service::before {
+    content: ""; position: absolute; inset: auto -30% -60% -30%; height: 150px;
+    background: radial-gradient(closest-side, rgba(231,180,166,.16), transparent);
+    opacity: 0; transition: opacity .4s ease;
+  }
+  .service:hover { transform: translateY(-6px); border-color: rgba(231,180,166,.4); box-shadow: 0 26px 60px rgba(0,0,0,.45); }
+  .service:hover::before { opacity: 1; }
+  .service-icon { font-size: 26px; }
+  .service h3 { font-size: 27px; }
+  .service p { font-size: 14px; color: var(--cream-dim); flex: 1; }
+  .service-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+  .service-list li {
+    display: flex; align-items: baseline; gap: 8px;
+    font-size: 13.5px; color: var(--cream);
+  }
+  .service-list li .dots { flex: 1; border-bottom: 1px dotted rgba(246,239,233,.22); transform: translateY(-3px); }
+  .service-list li .price { font-family: var(--serif); font-size: 18px; color: var(--pink); white-space: nowrap; }
+  .service-note { font-size: 11px; letter-spacing: .12em; color: var(--cream-dim); text-transform: uppercase; }
+
+  /* ============ PROMO ============ */
+  .promo { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .promo-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; }
+  .promo-card {
+    border-radius: var(--radius);
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(231,180,166,.14), rgba(201,168,106,.08));
+    border: 1px solid rgba(231,180,166,.28);
+  }
+  .promo-card h3 { font-size: clamp(28px, 3.6vw, 44px); margin: 10px 0 12px; }
+  .promo-card p { color: var(--cream-dim); margin-bottom: 22px; }
+  .promo-list { display: grid; gap: 12px; margin-top: 6px; }
+  .promo-list li {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding-bottom: 12px; border-bottom: 1px dashed var(--line);
+    font-size: 14px; color: var(--cream);
+  }
+  .promo-list li b { font-family: var(--serif); font-weight: 500; color: var(--pink); font-size: 18px; white-space: nowrap; }
+
+  /* ============ CTA ============ */
+  .cta { position: relative; overflow: hidden; }
+  .cta::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(231,180,166,.16), transparent 60%),
+      linear-gradient(160deg, #1a1310, #14100f);
+  }
+  .cta .wrap { position: relative; z-index: 2; }
+  .cta-inner { display: grid; grid-template-columns: 1.2fr .8fr; gap: 50px; align-items: center; }
+  .cta h2 { font-size: clamp(40px, 6vw, 84px); margin: 14px 0 18px; }
+  .cta p { color: var(--cream-dim); max-width: 440px; margin-bottom: 30px; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .cta-phone { font-family: var(--serif); font-size: clamp(26px, 3.4vw, 40px); color: var(--pink); }
+  .cta-note { margin-top: 16px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--cream-dim); }
+
+  .cta-badge {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    position: relative;
+    max-width: 300px; margin-left: auto;
+  }
+  .cta-badge::before {
+    content: ""; position: absolute; inset: 26px; border-radius: 50%;
+    border: 1px dashed rgba(231,180,166,.4);
+    animation: spin 26s linear infinite;
+  }
+  .cta-badge span { font-family: var(--serif); font-size: 64px; color: var(--pink); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ============ FOOTER ============ */
+  .footer { background: #100d0c; border-top: 1px solid var(--line); padding: 64px 0 34px; }
+  .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 44px; }
+  .footer h4 { font-family: var(--sans); font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--cream-dim); margin-bottom: 18px; font-weight: 500; }
+  .footer p, .footer a { font-size: 14.5px; color: var(--cream-dim); display: block; margin-bottom: 9px; transition: color .25s; }
+  .footer a:hover { color: var(--pink); }
+  .footer .brand-line { font-family: var(--serif); font-size: 34px; color: var(--cream); margin-bottom: 10px; }
+  .footer-bottom {
+    margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-size: 12px; color: #7d736c;
+  }
+
+  /* ============ REVEAL ============ */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.on { opacity: 1; transform: none; }
+
+  /* ============ MOBILE MENU ============ */
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 99;
+    background: rgba(16,13,12,.97);
+    backdrop-filter: blur(16px);
+    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 26px;
+    opacity: 0; pointer-events: none; transition: opacity .35s ease;
+  }
+  .mobile-menu.open { opacity: 1; pointer-events: auto; }
+  .mobile-menu a { font-family: var(--serif); font-size: 34px; color: var(--cream); }
+  .mobile-menu a:hover { color: var(--pink); }
+  .mobile-menu .close { position: absolute; top: 24px; right: 24px; font-size: 30px; color: var(--cream-dim); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-art { max-width: 380px; margin: 0 auto; aspect-ratio: 4/4.4; }
+    .hero::after { display: none; }
+    .about-grid, .promo-grid, .cta-inner { grid-template-columns: 1fr; gap: 38px; }
+    .about-visual { max-width: 520px; }
+    .cta-badge { margin: 0 auto; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 760px) {
+    .nav-links, .nav-cta .phone { display: none; }
+    .burger { display: flex; }
+    .nav-cta .btn { display: none; }
+    .hero { min-height: auto; padding: 120px 0 60px; }
+    .hero-title { font-size: clamp(46px, 13vw, 72px); }
+    .hero-features { gap: 22px; }
+    .feature i { width: 36px; height: 36px; font-size: 15px; }
+    section { padding: 70px 0; }
+    .section-head { margin-bottom: 34px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .promo-card { padding: 28px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    .footer-bottom { flex-direction: column; }
+    .cta-badge { max-width: 220px; }
+    .cta-badge span { font-size: 46px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header" id="header">
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="Кариана — на главную">
+      <span class="logo-mark">К</span>
+      <span class="logo-text">
+        <b>Кариана</b>
+        <span>Studio Beauty</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Основная навигация">
+      <a href="#about">О студии</a>
+      <a href="#services">Услуги</a>
+      <a href="#promo">Акции</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a class="phone" href="tel:+79252668">925-26-68</a>
+      <a class="btn" href="#booking">Записаться</a>
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="close" id="closeMenu" aria-label="Закрыть меню">✕</button>
+  <a href="#about">О студии</a>
+  <a href="#services">Услуги</a>
+  <a href="#promo">Акции</a>
+  <a href="#contacts">Контакты</a>
+  <a href="#booking">Записаться</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="reveal">
+        <p class="eyebrow">Студия красоты · Санкт-Петербург</p>
+        <h1 class="hero-title">
+          Красота
+          <span class="script">в каждой детали</span>
+        </h1>
+        <p class="hero-sub">
+          Косметология, ногтевой сервис, парикмахерский зал, массаж и солярий —
+          всё в одной студии на проспекте Луначарского, 11 к1.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#booking">Записаться →</a>
+          <a class="btn btn--ghost" href="#services">Наши услуги</a>
+        </div>
+      </div>
+
+      <div class="hero-art reveal" aria-hidden="true">
+        <small>Ежедневно 10:00 — 21:00</small>
+      </div>
+    </div>
+
+    <div class="hero-features reveal">
+      <div class="feature">
+        <i>✦</i>
+        <div><b>Премиум-уход</b><span>Профессиональные средства</span></div>
+      </div>
+      <div class="feature">
+        <i>✓</i>
+        <div><b>Опытные мастера</b><span>Индивидуальный подход</span></div>
+      </div>
+      <div class="feature">
+        <i>◷</i>
+        <div><b>Запись по звонку</b><span>Ежедневно с 10:00 до 21:00</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy reveal">
+      <p class="eyebrow">Добро пожаловать в Кариану</p>
+      <h2>Красота. Забота. <span class="script">Уверенность.</span></h2>
+      <p>
+        «Кариана» — уютная студия красоты на Выборгской стороне, где забота о себе
+        начинается с внимания к деталям. Мы объединили косметологию, уход за волосами
+        и ногтями, массаж и солярий в одном пространстве.
+      </p>
+      <p>
+        Каждая процедура — это индивидуальный подход и профессиональные средства.
+        Здесь можно расслабиться, восстановиться и выйти с ощущением лёгкости.
+      </p>
+      <p class="about-sign">Побалуйте себя ♡</p>
+    </div>
+
+    <div class="about-visual reveal">
+      <span class="tag">Атмосфера спокойствия</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Наши услуги</p>
+        <h2>Всё для вашей <span class="script">красоты</span></h2>
+      </div>
+      <p>Актуальные цены. Точную стоимость и запись уточняйте по телефону 925-26-68.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- Косметология -->
+      <article class="service reveal">
+        <div class="service-icon">🌸</div>
+        <h3>Косметология</h3>
+        <p>Уход за лицом и чистка — для здоровой и сияющей кожи.</p>
+        <ul class="service-list">
+          <li><span>Чистка лица</span><span class="dots"></span><span class="price">1 700 ₽</span></li>
+          <li><span>Уход за лицом</span><span class="dots"></span><span class="price">от 500 ₽</span></li>
+          <li><span>Массаж лица</span><span class="dots"></span><span class="price">1 000 ₽</span></li>
+          <li><span>Депиляция</span><span class="dots"></span><span class="price">от 200 ₽</span></li>
+        </ul>
+      </article>
+
+      <!-- Ногтевой сервис -->
+      <article class="service reveal">
+        <div class="service-icon">💅</div>
+        <h3>Ногтевой сервис</h3>
+        <p>Маникюр и педикюр с уходом и покрытием гель-лаком.</p>
+        <ul class="service-list">
+          <li><span>Маникюр</span><span class="dots"></span><span class="price">800 ₽</span></li>
+          <li><span>Педикюр</span><span class="dots"></span><span class="price">1 400 ₽</span></li>
+          <li><span>Маникюр + шеллак + снятие</span><span class="dots"></span><span class="price">1 200 ₽</span></li>
+          <li><span>Педикюр + шеллак + снятие</span><span class="dots"></span><span class="price">1 800 ₽</span></li>
+        </ul>
+        <p class="service-note">Покрытие уточняйте у мастера</p>
+      </article>
+
+      <!-- Парикмахерский зал -->
+      <article class="service reveal">
+        <div class="service-icon">✂</div>
+        <h3>Парикмахерский зал</h3>
+        <p>Стрижки, окрашивание и восстановление волос.</p>
+        <ul class="service-list">
+          <li><span>Стрижка женская</span><span class="dots"></span><span class="price">1 100 ₽</span></li>
+          <li><span>Стрижка мужская</span><span class="dots"></span><span class="price">700 ₽</span></li>
+          <li><span>Окрашивание</span><span class="dots"></span><span class="price">от 3 500 ₽</span></li>
+          <li><span>Ботокс волос</span><span class="dots"></span><span class="price">4 500 ₽</span></li>
+        </ul>
+      </article>
+
+      <!-- Массаж -->
+      <article class="service reveal">
+        <div class="service-icon">🤲</div>
+        <h3>Массаж и LPG</h3>
+        <p>Расслабление, тонус и коррекция фигуры.</p>
+        <ul class="service-list">
+          <li><span>Массаж LPG тела</span><span class="dots"></span><span class="price">850 ₽</span></li>
+          <li><span>Классический + лимфодренаж</span><span class="dots"></span><span class="price">1 500 ₽</span></li>
+          <li><span>Антицеллюлитный</span><span class="dots"></span><span class="price">1 700 ₽</span></li>
+          <li><span>Спина и шея</span><span class="dots"></span><span class="price">1 200 ₽</span></li>
+        </ul>
+      </article>
+
+      <!-- Брови и ресницы -->
+      <article class="service reveal">
+        <div class="service-icon">👁</div>
+        <h3>Брови и ресницы</h3>
+        <p>Выразительный взгляд и ухоженные брови.</p>
+        <ul class="service-list">
+          <li><span>Окрашивание бровей</span><span class="dots"></span><span class="price">700 ₽</span></li>
+          <li><span>Окрашивание ресниц</span><span class="dots"></span><span class="price">700 ₽</span></li>
+          <li><span>Коррекция формы</span><span class="dots"></span><span class="price">по запросу</span></li>
+        </ul>
+      </article>
+
+      <!-- Солярий -->
+      <article class="service reveal">
+        <div class="service-icon">☀</div>
+        <h3>С
