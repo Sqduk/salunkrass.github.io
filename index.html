@@ -1,585 +1,636 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Кариана — студия красоты на Луначарского</title>
-<meta name="description" content="Студия красоты «Кариана» в Санкт-Петербурге: косметология, ногтевой сервис, парикмахерский зал, массаж, солярий. Запись по телефону 925-26-68.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Кариана — студия красоты на улице Композиторов, 12А</title>
+<meta name="description" content="Студия красоты «Кариана» в Санкт-Петербурге: косметология, ногтевой сервис, парикмахерский зал, массаж, брови и ресницы, солярий. Ежедневно 10:00–21:00. Запись: +7 (911) 925-26-68.">
+<meta name="theme-color" content="#0a0706">
+<meta property="og:title" content="Кариана — студия красоты в Санкт-Петербурге">
+<meta property="og:description" content="Косметология, ногти, волосы, массаж и солярий в одной студии. Композиторов, 12А.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  /* ============ RESET ============ */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  img { max-width: 100%; display: block; }
-  a { text-decoration: none; color: inherit; }
-  ul { list-style: none; }
-  button { font: inherit; cursor: pointer; border: none; background: none; }
-
-  /* ============ TOKENS ============ */
-  :root {
-    --bg: #14100f;
-    --bg-2: #1c1715;
-    --bg-3: #221c19;
-    --cream: #f6efe9;
-    --cream-dim: #cfc4bb;
-    --pink: #e7b4a6;
-    --pink-soft: #f0c9bd;
-    --gold: #c9a86a;
-    --line: rgba(246, 239, 233, 0.14);
-    --serif: "Cormorant Garamond", Georgia, serif;
-    --sans: "Jost", "Segoe UI", sans-serif;
-    --maxw: 1200px;
-    --radius: 22px;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--cream);
-    font-family: var(--sans);
-    font-weight: 300;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-
-  /* ============ TYPO ============ */
-  h1, h2, h3, .serif { font-family: var(--serif); font-weight: 500; line-height: 1.05; }
-  .script { font-family: var(--serif); font-style: italic; color: var(--pink); font-weight: 400; }
-  .eyebrow {
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--cream-dim);
-    font-weight: 400;
-  }
-
-  /* ============ BUTTONS ============ */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--pink);
-    color: #2a1d19;
-    padding: 15px 30px;
-    border-radius: 100px;
-    font-size: 12px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: transform .3s ease, background .3s ease, box-shadow .3s ease;
-    box-shadow: 0 12px 30px rgba(231, 180, 166, 0.18);
-  }
-  .btn:hover { background: var(--pink-soft); transform: translateY(-2px); box-shadow: 0 16px 38px rgba(231, 180, 166, 0.3); }
-  .btn--ghost {
-    background: transparent;
-    color: var(--cream);
-    border: 1px solid var(--line);
-    box-shadow: none;
-  }
-  .btn--ghost:hover { border-color: var(--pink); color: var(--pink); background: transparent; transform: translateY(-2px); }
-
-  /* ============ HEADER ============ */
-  .header {
-    position: fixed;
-    inset: 0 0 auto 0;
-    z-index: 100;
-    padding: 22px 0;
-    transition: background .4s ease, padding .4s ease, backdrop-filter .4s ease;
-  }
-  .header.scrolled {
-    background: rgba(20, 16, 15, 0.88);
-    backdrop-filter: blur(14px);
-    padding: 14px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .logo { display: flex; align-items: center; gap: 12px; }
-  .logo-mark {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    border: 1px solid var(--pink);
-    display: grid; place-items: center;
-    font-family: var(--serif);
-    font-size: 20px;
-    color: var(--pink);
-  }
-  .logo-text { display: flex; flex-direction: column; line-height: 1.05; }
-  .logo-text b { font-family: var(--serif); font-weight: 600; font-size: 20px; letter-spacing: .04em; }
-  .logo-text span { font-size: 9px; letter-spacing: .34em; text-transform: uppercase; color: var(--cream-dim); }
-
-  .nav-links { display: flex; gap: 34px; }
-  .nav-links a {
-    font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--cream-dim);
-    transition: color .25s ease; position: relative; padding-bottom: 4px;
-  }
-  .nav-links a::after {
-    content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0;
-    background: var(--pink); transition: width .3s ease;
-  }
-  .nav-links a:hover { color: var(--cream); }
-  .nav-links a:hover::after { width: 100%; }
-
-  .nav-cta { display: flex; align-items: center; gap: 18px; }
-  .phone {
-    font-family: var(--serif); font-size: 19px; color: var(--cream); letter-spacing: .02em;
-  }
-  .phone:hover { color: var(--pink); }
-  .burger { display: none; flex-direction: column; gap: 5px; padding: 6px; }
-  .burger span { width: 24px; height: 1.5px; background: var(--cream); transition: .3s; }
-
-  /* ============ HERO ============ */
-  .hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    padding: 140px 0 70px;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: "";
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 55% 60% at 78% 42%, rgba(231,180,166,0.14), transparent 65%),
-      radial-gradient(ellipse 40% 40% at 15% 85%, rgba(201,168,106,0.10), transparent 70%),
-      linear-gradient(160deg, #171211 0%, #14100f 55%, #1a1310 100%);
-  }
-  .hero::after {
-    content: "";
-    position: absolute; right: -8%; top: 50%; transform: translateY(-50%);
-    width: min(46vw, 560px); aspect-ratio: 1;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    box-shadow: inset 0 0 0 34px rgba(231,180,166,0.035), 0 0 120px rgba(231,180,166,0.10);
-    pointer-events: none;
-  }
-  .hero .wrap { position: relative; z-index: 2; }
-  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; }
-
-  .hero-title {
-    font-size: clamp(52px, 9vw, 118px);
-    letter-spacing: -0.01em;
-    margin: 18px 0 8px;
-  }
-  .hero-title .script { display: block; font-size: .78em; line-height: .9; margin-top: 4px; }
-  .hero-sub { max-width: 430px; color: var(--cream-dim); margin: 26px 0 34px; font-size: 16px; }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-
-  .hero-art {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    border-radius: 240px 240px var(--radius) var(--radius);
-    background:
-      radial-gradient(circle at 30% 25%, rgba(240,201,189,0.45), transparent 55%),
-      linear-gradient(180deg, #2b211d 0%, #1d1715 100%);
-    border: 1px solid var(--line);
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-  }
-  .hero-art::before {
-    content: "🦋";
-    font-size: clamp(90px, 14vw, 150px);
-    filter: drop-shadow(0 20px 50px rgba(231,180,166,.35));
-  }
-  .hero-art small {
-    position: absolute; bottom: 22px; left: 0; right: 0; text-align: center;
-    font-size: 10px; letter-spacing: .34em; text-transform: uppercase; color: var(--cream-dim);
-  }
-
-  .hero-features {
-    position: relative; z-index: 2;
-    display: flex; flex-wrap: wrap; gap: 34px;
-    margin-top: 54px; padding-top: 30px; border-top: 1px solid var(--line);
-  }
-  .feature { display: flex; align-items: center; gap: 13px; }
-  .feature i {
-    width: 42px; height: 42px; border-radius: 50%;
-    display: grid; place-items: center; font-style: normal; font-size: 17px;
-    border: 1px solid var(--line); color: var(--pink);
-  }
-  .feature b { display: block; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; }
-  .feature span { font-size: 12px; color: var(--cream-dim); }
-
-  /* ============ SECTION SHELL ============ */
-  section { padding: 100px 0; }
-  .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; margin-bottom: 52px; flex-wrap: wrap; }
-  .section-head h2 { font-size: clamp(38px, 5.4vw, 68px); margin-top: 12px; }
-  .section-head p { max-width: 360px; color: var(--cream-dim); font-size: 15px; }
-
-  /* ============ ABOUT ============ */
-  .about { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 60px; align-items: center; }
-  .about-copy h2 { font-size: clamp(34px, 4.6vw, 58px); margin: 14px 0 22px; }
-  .about-copy p { color: var(--cream-dim); margin-bottom: 16px; font-size: 15.5px; }
-  .about-sign { font-family: var(--serif); font-style: italic; font-size: 26px; color: var(--pink); margin-top: 22px; }
-
-  .about-visual {
-    position: relative;
-    aspect-ratio: 5 / 4;
-    border-radius: var(--radius);
-    background:
-      radial-gradient(circle at 70% 20%, rgba(231,180,166,0.25), transparent 55%),
-      linear-gradient(135deg, #2a211d, #1a1513 70%);
-    border: 1px solid var(--line);
-    overflow: hidden;
-    display: grid; place-items: center;
-  }
-  .about-visual::before {
-    content: "✦";
-    font-size: 90px; color: var(--pink); opacity: .55;
-    text-shadow: 0 0 60px rgba(231,180,166,.5);
-  }
-  .about-visual .tag {
-    position: absolute; left: 22px; bottom: 22px;
-    background: rgba(20,16,15,.72); border: 1px solid var(--line);
-    backdrop-filter: blur(8px);
-    padding: 12px 18px; border-radius: 100px;
-    font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: var(--cream-dim);
-  }
-
-  /* ============ SERVICES ============ */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-  }
-  .service {
-    background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 30px 28px 26px;
-    display: flex; flex-direction: column; gap: 14px;
-    transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
-    position: relative; overflow: hidden;
-  }
-  .service::before {
-    content: ""; position: absolute; inset: auto -30% -60% -30%; height: 150px;
-    background: radial-gradient(closest-side, rgba(231,180,166,.16), transparent);
-    opacity: 0; transition: opacity .4s ease;
-  }
-  .service:hover { transform: translateY(-6px); border-color: rgba(231,180,166,.4); box-shadow: 0 26px 60px rgba(0,0,0,.45); }
-  .service:hover::before { opacity: 1; }
-  .service-icon { font-size: 26px; }
-  .service h3 { font-size: 27px; }
-  .service p { font-size: 14px; color: var(--cream-dim); flex: 1; }
-  .service-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
-  .service-list li {
-    display: flex; align-items: baseline; gap: 8px;
-    font-size: 13.5px; color: var(--cream);
-  }
-  .service-list li .dots { flex: 1; border-bottom: 1px dotted rgba(246,239,233,.22); transform: translateY(-3px); }
-  .service-list li .price { font-family: var(--serif); font-size: 18px; color: var(--pink); white-space: nowrap; }
-  .service-note { font-size: 11px; letter-spacing: .12em; color: var(--cream-dim); text-transform: uppercase; }
-
-  /* ============ PROMO ============ */
-  .promo { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .promo-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; }
-  .promo-card {
-    border-radius: var(--radius);
-    padding: 40px;
-    background: linear-gradient(135deg, rgba(231,180,166,.14), rgba(201,168,106,.08));
-    border: 1px solid rgba(231,180,166,.28);
-  }
-  .promo-card h3 { font-size: clamp(28px, 3.6vw, 44px); margin: 10px 0 12px; }
-  .promo-card p { color: var(--cream-dim); margin-bottom: 22px; }
-  .promo-list { display: grid; gap: 12px; margin-top: 6px; }
-  .promo-list li {
-    display: flex; justify-content: space-between; gap: 16px;
-    padding-bottom: 12px; border-bottom: 1px dashed var(--line);
-    font-size: 14px; color: var(--cream);
-  }
-  .promo-list li b { font-family: var(--serif); font-weight: 500; color: var(--pink); font-size: 18px; white-space: nowrap; }
-
-  /* ============ CTA ============ */
-  .cta { position: relative; overflow: hidden; }
-  .cta::before {
-    content: ""; position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(231,180,166,.16), transparent 60%),
-      linear-gradient(160deg, #1a1310, #14100f);
-  }
-  .cta .wrap { position: relative; z-index: 2; }
-  .cta-inner { display: grid; grid-template-columns: 1.2fr .8fr; gap: 50px; align-items: center; }
-  .cta h2 { font-size: clamp(40px, 6vw, 84px); margin: 14px 0 18px; }
-  .cta p { color: var(--cream-dim); max-width: 440px; margin-bottom: 30px; }
-  .cta-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-  .cta-phone { font-family: var(--serif); font-size: clamp(26px, 3.4vw, 40px); color: var(--pink); }
-  .cta-note { margin-top: 16px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--cream-dim); }
-
-  .cta-badge {
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    display: grid; place-items: center;
-    position: relative;
-    max-width: 300px; margin-left: auto;
-  }
-  .cta-badge::before {
-    content: ""; position: absolute; inset: 26px; border-radius: 50%;
-    border: 1px dashed rgba(231,180,166,.4);
-    animation: spin 26s linear infinite;
-  }
-  .cta-badge span { font-family: var(--serif); font-size: 64px; color: var(--pink); }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* ============ FOOTER ============ */
-  .footer { background: #100d0c; border-top: 1px solid var(--line); padding: 64px 0 34px; }
-  .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 44px; }
-  .footer h4 { font-family: var(--sans); font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--cream-dim); margin-bottom: 18px; font-weight: 500; }
-  .footer p, .footer a { font-size: 14.5px; color: var(--cream-dim); display: block; margin-bottom: 9px; transition: color .25s; }
-  .footer a:hover { color: var(--pink); }
-  .footer .brand-line { font-family: var(--serif); font-size: 34px; color: var(--cream); margin-bottom: 10px; }
-  .footer-bottom {
-    margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line);
-    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-    font-size: 12px; color: #7d736c;
-  }
-
-  /* ============ REVEAL ============ */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
-  .reveal.on { opacity: 1; transform: none; }
-
-  /* ============ MOBILE MENU ============ */
-  .mobile-menu {
-    position: fixed; inset: 0; z-index: 99;
-    background: rgba(16,13,12,.97);
-    backdrop-filter: blur(16px);
-    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 26px;
-    opacity: 0; pointer-events: none; transition: opacity .35s ease;
-  }
-  .mobile-menu.open { opacity: 1; pointer-events: auto; }
-  .mobile-menu a { font-family: var(--serif); font-size: 34px; color: var(--cream); }
-  .mobile-menu a:hover { color: var(--pink); }
-  .mobile-menu .close { position: absolute; top: 24px; right: 24px; font-size: 30px; color: var(--cream-dim); }
-
-  /* ============ RESPONSIVE ============ */
-  @media (max-width: 1024px) {
-    .hero-grid { grid-template-columns: 1fr; }
-    .hero-art { max-width: 380px; margin: 0 auto; aspect-ratio: 4/4.4; }
-    .hero::after { display: none; }
-    .about-grid, .promo-grid, .cta-inner { grid-template-columns: 1fr; gap: 38px; }
-    .about-visual { max-width: 520px; }
-    .cta-badge { margin: 0 auto; }
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media (max-width: 760px) {
-    .nav-links, .nav-cta .phone { display: none; }
-    .burger { display: flex; }
-    .nav-cta .btn { display: none; }
-    .hero { min-height: auto; padding: 120px 0 60px; }
-    .hero-title { font-size: clamp(46px, 13vw, 72px); }
-    .hero-features { gap: 22px; }
-    .feature i { width: 36px; height: 36px; font-size: 15px; }
-    section { padding: 70px 0; }
-    .section-head { margin-bottom: 34px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .promo-card { padding: 28px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-    .footer-bottom { flex-direction: column; }
-    .cta-badge { max-width: 220px; }
-    .cta-badge span { font-size: 46px; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    .reveal { opacity: 1; transform: none; }
-  }
+:root{
+  --bg:#080605;--panel:#110d0b;--cream:#f4ebe2;--cream2:#ddcec2;--muted:#b9a99e;--muted2:#8d7e74;
+  --pink:#e7b4a6;--pink2:#f4cec2;--gold:#c9a86a;--line:rgba(244,235,226,.14);--line2:rgba(244,235,226,.24);
+  --serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost","Segoe UI",sans-serif;--ease:cubic-bezier(.16,1,.3,1);
+  --w:1240px;--pad:clamp(18px,4vw,52px)
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--cream);font:300 16px/1.65 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.03;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3,p,figure{margin:0}
+ul{margin:0;padding:0;list-style:none}
+::selection{background:var(--pink);color:#24130f}
+:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
+.container{width:min(var(--w),calc(100% - var(--pad)*2));margin-inline:auto}
+.panel{position:relative;width:min(1504px,calc(100% - 16px));margin:0 auto 8px;border:1px solid var(--line);border-radius:28px;background:var(--panel);overflow:hidden;isolation:isolate}
+section.panel{scroll-margin-top:92px}
+.eyebrow{display:flex;align-items:center;gap:9px;margin:0 0 17px;font-size:9px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--pink);box-shadow:0 0 12px rgba(231,180,166,.7)}
+.display{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.2vw,78px);line-height:.98;letter-spacing:-.022em}
+.display em{font-style:italic;color:var(--pink)}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 25px;border-radius:100px;background:linear-gradient(128deg,#f5ddd2,#e7b4a6 55%,#d79d8e);color:#2a1713;font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;box-shadow:0 18px 38px -24px rgba(231,180,166,.9),inset 0 1px 0 rgba(255,255,255,.5);transition:.35s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:rgba(255,246,236,.04);border:1px solid var(--line2);color:var(--cream);box-shadow:none}
+.btn.ghost:hover{background:rgba(255,246,236,.08);border-color:var(--pink);color:var(--pink2)}
+.btn.sm{min-height:42px;padding:0 18px;font-size:9px}
+.glass{background:linear-gradient(150deg,rgba(255,246,236,.1),rgba(255,246,236,.04) 50%,rgba(255,246,236,.07));border:1px solid rgba(255,246,236,.19);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 34px 90px -58px #000}
+/* header */
+.header{position:fixed;inset:0 0 auto;z-index:500;padding:14px clamp(8px,2vw,24px);transition:.4s var(--ease)}
+.header .bar{width:min(1504px,100%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:8px 10px 8px 16px;border:1px solid transparent;border-radius:100px;transition:.4s var(--ease)}
+.header.scrolled .bar{background:rgba(14,10,9,.76);border-color:var(--line);backdrop-filter:blur(26px) saturate(145%);-webkit-backdrop-filter:blur(26px) saturate(145%);box-shadow:0 20px 50px -34px #000}
+.logo{display:flex;align-items:center;gap:10px}
+.logo b{width:37px;height:37px;display:grid;place-items:center;border:1px solid rgba(231,180,166,.7);border-radius:50%;font:400 20px/1 var(--serif);color:var(--pink)}
+.logo span{display:flex;flex-direction:column;line-height:1}
+.logo strong{font:500 17px/1 var(--serif);letter-spacing:.16em}
+.logo small{margin-top:3px;font-size:6px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted2)}
+.nav{display:flex;gap:2px;padding:5px;border:1px solid var(--line);border-radius:100px;background:rgba(255,246,236,.035);backdrop-filter:blur(12px)}
+.nav a{padding:9px 12px;border-radius:100px;font-size:9px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);transition:.3s}
+.nav a:hover{color:var(--cream)}
+.nav a.active{background:var(--cream);color:#1d120e}
+.ha{display:flex;align-items:center;gap:13px}
+.ha>.tel{font:400 17px/1 var(--serif);color:var(--cream2)}
+.burger{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;place-items:center}
+.burger i{display:block;width:18px;height:1px;margin:2px 0;background:var(--cream)}
+/* menu */
+.menu{position:fixed;inset:0;z-index:700;display:flex;flex-direction:column;padding:18px var(--pad) 32px;background:rgba(9,6,5,.96);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);opacity:0;visibility:hidden;pointer-events:none;transition:.45s var(--ease)}
+body.menu-open{overflow:hidden}
+.menu.open{opacity:1;visibility:visible;pointer-events:auto}
+.menu .top{display:flex;align-items:center;justify-content:space-between}
+.menu .x{width:44px;height:44px;border:1px solid var(--line2);border-radius:50%;font-size:20px;color:var(--cream)}
+.menu nav{flex:1;display:flex;flex-direction:column;justify-content:center;padding:30px 0}
+.menu nav a{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font:400 clamp(32px,8vw,52px)/1.1 var(--serif);color:var(--cream)}
+.menu nav a b{font:400 8px var(--sans);letter-spacing:.2em;color:var(--muted2)}
+.menu nav a:hover{color:var(--pink)}
+.menu .bottom{display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:1px solid var(--line)}
+.menu .bottom a:first-child{font:400 26px var(--serif);color:var(--pink)}
+.menu .bottom p{font-size:11px;line-height:1.7;color:var(--muted)}
+/* hero */
+.hero{min-height:max(700px,calc(100svh - 16px));display:flex;align-items:center;background:radial-gradient(60% 80% at 82% 36%,rgba(231,180,166,.11),transparent 62%),radial-gradient(40% 50% at 12% 90%,rgba(201,168,106,.08),transparent 65%),linear-gradient(155deg,#15100e,#100c0b 55%,#120d0b)}
+.hero .bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero .word{position:absolute;top:2%;left:50%;transform:translateX(-50%);font:600 clamp(100px,21vw,320px)/.8 var(--serif);letter-spacing:.055em;white-space:nowrap;color:rgba(244,235,226,.032);-webkit-text-stroke:1px rgba(244,235,226,.055)}
+.hero .orb{position:absolute;border-radius:50%;filter:blur(90px)}
+.hero .o1{width:520px;height:520px;right:-5%;top:16%;background:rgba(231,180,166,.13)}
+.hero .o2{width:380px;height:380px;left:8%;bottom:-12%;background:rgba(201,168,106,.08)}
+.hero .grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.78fr);align-items:center;gap:clamp(30px,5vw,70px);padding-top:calc(70px + 60px);padding-bottom:80px}
+.hero-copy{padding-bottom:8px}
+.hero h1{font:400 clamp(62px,10.2vw,150px)/.82 var(--serif);letter-spacing:-.034em}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.05em;margin-bottom:-.04em}
+.hero h1 .line:nth-child(2){padding-left:.5em}
+.hero h1 .in{display:inline-block;animation:rise 1.2s var(--ease) both}
+@keyframes rise{from{transform:translateY(110%)}to{transform:none}}
+.hero h1 em{font-style:italic;font-size:.72em;color:var(--pink);line-height:1}
+.hero h1 .line:nth-child(1) .in{animation-delay:.16s}
+.hero h1 .line:nth-child(2) .in{animation-delay:.26s}
+.hero h1 .line:nth-child(3) .in{animation-delay:.36s}
+.hero .lead{max-width:44ch;margin:25px 0 28px;font-size:14px;line-height:1.75;color:var(--cream2)}
+.hero .actions{display:flex;flex-wrap:wrap;gap:10px}
+.hero .meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:20px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted2)}
+.hero .meta i{width:3px;height:3px;border-radius:50%;background:var(--gold)}
+.hero-media{position:relative;justify-self:end;width:100%;max-width:425px;padding-bottom:20px}
+.portrait{position:relative;aspect-ratio:4/5.2;overflow:hidden;border:1px solid var(--line2);border-radius:220px 220px 26px 26px;background:#1b1411;box-shadow:0 44px 110px -54px #000}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:saturate(.82) contrast(1.03) brightness(.86) sepia(.07);transform:scale(1.035);transition:1.2s var(--ease)}
+.portrait:hover img{transform:scale(1.075)}
+.portrait::after{content:"";position:absolute;inset:0;background:radial-gradient(62% 48% at 68% 16%,rgba(231,180,166,.18),transparent 62%),linear-gradient(180deg,rgba(17,13,11,.03) 36%,rgba(17,13,11,.56))}
+.portrait .tag{position:absolute;z-index:2;top:17px;left:50%;transform:translateX(-50%);padding:8px 13px;border:1px solid rgba(255,246,236,.24);border-radius:100px;background:rgba(17,12,10,.24);backdrop-filter:blur(12px);font-size:7px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,235,226,.85)}
+.stat{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:14px}
+.stat b{font:400 28px/.9 var(--serif)}
+.stat span{font-size:7px;line-height:1.5;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.s1{left:-30px;bottom:110px}.s2{right:-24px;top:22%}
+.addr{position:absolute;z-index:3;left:16px;bottom:12px;display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:100px;font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream2)}
+.addr i{width:5px;height:5px;border-radius:50%;background:var(--pink)}
+.hero .foot{position:absolute;z-index:3;left:50%;bottom:20px;transform:translateX(-50%);display:flex;justify-content:space-between;gap:20px;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2)}
+/* marquee */
+.marquee{padding:15px 0;border-radius:18px;background:#0d0a09}
+.marquee .track{display:flex;align-items:center;width:max-content;animation:mq 44s linear infinite}
+.marquee span{font:400 clamp(20px,2.5vw,30px)/1 var(--serif);color:var(--cream2);white-space:nowrap}
+.marquee i{margin:0 clamp(18px,2.6vw,36px);font-size:7px;font-style:normal;color:var(--pink)}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* about */
+.about{padding:clamp(66px,9vw,128px) 0;background:radial-gradient(48% 65% at 88% 16%,rgba(231,180,166,.07),transparent 65%),linear-gradient(155deg,#17110f,#120d0b)}
+.about .grid{display:grid;grid-template-columns:1.02fr .86fr;gap:clamp(40px,6vw,100px);align-items:center}
+.about .copy .display{max-width:12ch}
+.about .copy p{margin-top:20px;font-size:14px;line-height:1.78;color:var(--muted)}
+.about .copy p+p{margin-top:13px}
+.about .sign{margin-top:18px;font:400 29px/1 var(--serif);font-style:italic;color:var(--pink)}
+.about .sign i{font-style:normal;color:var(--gold)}
+.about .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;padding-top:23px;border-top:1px solid var(--line)}
+.feature b{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2)}
+.feature span{display:block;margin-top:4px;font-size:10px;line-height:1.5;color:var(--muted2)}
+.feature i{display:grid;place-items:center;width:33px;height:33px;margin-bottom:9px;border:1px solid var(--line2);border-radius:50%;font-style:normal;color:var(--pink)}
+.about .link{display:inline-flex;gap:9px;margin-top:25px;padding-bottom:7px;border-bottom:1px solid var(--line2);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream2)}
+.about .media{position:relative;padding-bottom:30px}
+.about .frame{aspect-ratio:1/1.04;overflow:hidden;border:1px solid var(--line);border-radius:180px 24px 24px 24px;background:#1c1512}
+.about .frame img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) contrast(1.06) brightness(.56) sepia(.08);transform:scale(1.06)}
+.about .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,13,11,.1) 24%,rgba(17,13,11,.58))}
+.about .tag{position:absolute;left:16px;bottom:48px;padding:9px 13px;border-radius:100px;font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream2)}
+.about .hours{position:absolute;right:16px;bottom:14px;display:flex;flex-direction:column;gap:1px;min-width:138px;padding:12px 14px;border-radius:14px}
+.about .hours small{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
+.about .hours b{font:400 22px/1 var(--serif)}
+.about .hours span{font-size:8px;color:var(--muted2)}
+/* section head */
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:36px;margin-bottom:clamp(30px,4vw,48px)}
+.head .display{max-width:15ch}
+.head .aside{max-width:330px;text-align:right;font-size:12px;line-height:1.7;color:var(--muted)}
+.head .aside a{color:var(--cream2);border-bottom:1px solid var(--line2)}
+.head .idx{display:block;margin-top:15px;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted2)}
+/* services */
+.services{padding:clamp(66px,9vw,128px) 0;background:radial-gradient(45% 50% at 12% 4%,rgba(201,168,106,.055),transparent 65%),linear-gradient(160deg,#120d0b,#0f0b0a)}
+.services .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{position:relative;z-index:0;display:flex;flex-direction:column;min-height:405px;padding:22px 21px 18px;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:linear-gradient(158deg,rgba(255,246,236,.06),rgba(255,246,236,.02));backdrop-filter:blur(10px);transition:.5s var(--ease)}
+.card::before{content:"";position:absolute;inset:0;z-index:-2;background-image:var(--img);background-size:cover;background-position:center;opacity:.055;filter:saturate(.7) brightness(.5);transition:.65s}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(17,13,11,.25),rgba(17,13,11,.92));pointer-events:none}
+.card:hover{transform:translateY(-6px);border-color:rgba(231,180,166,.34);box-shadow:0 34px 70px -48px #000}
+.card:hover::before{opacity:.24}
+.card .top{display:flex;align-items:flex-start;justify-content:space-between}
+.card .num{font-size:8px;letter-spacing:.2em;color:var(--muted2)}
+.card .ico{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line2);border-radius:50%;font-size:17px;color:var(--pink);transition:.4s}
+.card:hover .ico{background:rgba(231,180,166,.12);transform:rotate(-8deg)}
+.card h3{margin:17px 0 6px;font:400 31px/1 var(--serif)}
+.card>p{max-width:30ch;font-size:11px;line-height:1.6;color:var(--muted)}
+.prices{display:flex;flex-direction:column;gap:8px;margin-top:19px}
+.prices li{display:flex;align-items:baseline;gap:6px;font-size:11px;line-height:1.45;color:var(--cream2)}
+.prices .dots{flex:1;min-width:8px;border-bottom:1px dotted rgba(244,235,226,.23);transform:translateY(-3px)}
+.prices b{flex:none;font:400 16px/1 var(--serif);color:var(--pink);white-space:nowrap}
+.card .note{margin-top:8px!important;font-size:7px!important;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2)!important}
+.card .cta{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:auto;padding-top:15px;border-top:1px solid var(--line);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream2);transition:.3s}
+.card .cta:hover{color:var(--pink)}
+.services .bottom{margin-top:24px;font:400 17px/1.3 var(--serif);font-style:italic;color:var(--muted)}
+.services .bottom a{color:var(--pink);border-bottom:1px solid rgba(231,180,166,.35)}
+/* gallery */
+.gallery{padding:clamp(66px,9vw,128px) 0;background:radial-gradient(55% 55% at 50% 100%,rgba(231,180,166,.06),transparent 66%),linear-gradient(160deg,#15100e,#110d0b)}
+.gallery .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:start}
+.gallery figure:nth-child(even){margin-top:40px}
+.gallery .pic{position:relative;aspect-ratio:3/4.15;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#1c1512}
+.gallery img{width:100%;height:100%;object-fit:cover;filter:saturate(.76) contrast(1.04) brightness(.72) sepia(.04);transition:.9s var(--ease)}
+.gallery figure:hover img{transform:scale(1.07);filter:saturate(.9) brightness(.84)}
+.gallery figcaption{display:flex;align-items:center;gap:9px;margin-top:9px;font-size:8px;color:var(--muted2)}
+.gallery figcaption b{font:400 20px/1 var(--serif);color:var(--cream)}
+.gallery figcaption span{margin-left:auto;font-size:11px;color:var(--cream2)}
+/* featured */
+.featured{min-height:clamp(560px,62vw,760px);display:flex;align-items:center;padding:70px 0;background:#0d0908}
+.featured .bgimg{position:absolute;inset:-8% 0;z-index:-2;overflow:hidden}
+.featured .bgimg img{width:100%;height:100%;object-fit:cover;object-position:58% 40%;filter:saturate(.82) contrast(1.03) brightness(.63) sepia(.05);transform:scale(1.06)}
+.featured .veil{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(13,9,8,.9),rgba(13,9,8,.58) 42%,rgba(13,9,8,.08) 72%),linear-gradient(180deg,rgba(13,9,8,.18),rgba(13,9,8,.52))}
+.featured .inner{display:flex;align-items:flex-end;justify-content:space-between;gap:30px}
+.featured .box{width:min(100%,540px);padding:clamp(23px,3vw,40px);border-radius:23px}
+.featured h2{font:400 clamp(36px,4.2vw,60px)/1 var(--serif);margin-bottom:16px}
+.featured h2 em{font-style:italic;color:var(--pink2)}
+.featured .box>p{max-width:42ch;font-size:13px;line-height:1.7;color:var(--cream2)}
+.featured .ticks{display:flex;flex-direction:column;gap:8px;margin:18px 0 22px}
+.featured .ticks li{display:flex;gap:8px;font-size:11px;color:var(--cream2)}
+.featured .ticks i{font-style:normal;font-size:6px;color:var(--pink)}
+.featured .side{display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right}
+.featured .side b{font:400 42px/1 var(--serif);color:rgba(244,235,226,.72)}
+.featured .side span{font-size:7px;line-height:1.5;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,235,226,.55)}
+/* booking */
+.booking{padding:clamp(66px,9vw,126px) 0;background:#15100d}
+.booking .bgimg{position:absolute;inset:-4%;z-index:-2;background-image:url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80");background-size:cover;background-position:center;filter:blur(2.5px) brightness(.34) saturate(.75);transform:scale(1.04)}
+.booking .veil{position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 90% at 82% 40%,rgba(231,180,166,.09),transparent 64%),linear-gradient(100deg,rgba(15,11,9,.84),rgba(15,11,9,.56) 52%,rgba(15,11,9,.78))}
+.booking .grid{display:grid;grid-template-columns:1fr .92fr;gap:clamp(38px,6vw,84px);align-items:start}
+.booking h2{max-width:12ch}
+.booking .lead{max-width:44ch;margin-top:20px;font-size:13px;color:var(--cream2)}
+.contacts{margin-top:27px}
+.contacts li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.contacts li:last-child{border-bottom:1px solid var(--line)}
+.contacts .ico{display:grid;place-items:center;width:33px;height:33px;flex:none;border:1px solid var(--line2);border-radius:50%;font-size:14px;color:var(--pink)}
+.contacts small{display:block;font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted2)}
+.contacts a,.contacts span{display:block;font-size:13px;color:var(--cream)}
+.contacts em{display:block;font-size:9px;font-style:normal;color:var(--muted2)}
+.form-card{padding:clamp(20px,3vw,32px);border-radius:23px}
+.form-card h3{font:400 31px/1 var(--serif)}
+.form-card .sub{margin-top:6px;font-size:10px;color:var(--muted)}
+.form{padding-top:17px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.field{position:relative;margin-top:14px;min-width:0}
+.field label{display:flex;justify-content:space-between;gap:8px;margin-bottom:5px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.field label span{font-size:7px;letter-spacing:.04em;text-transform:none;color:var(--muted2)}
+.field input,.field select,.field textarea{width:100%;min-height:43px;padding:10px 12px;border:1px solid rgba(255,246,236,.14);border-radius:9px;background:rgba(255,246,236,.035);color:var(--cream);font:300 13px/1.4 var(--sans);outline:none;color-scheme:dark}
+.field textarea{min-height:62px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:rgba(185,169,158,.62)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(231,180,166,.72);background:rgba(255,246,236,.06);box-shadow:0 0 0 3px rgba(231,180,166,.08)}
+.field select{appearance:none;padding-right:34px;cursor:pointer;color-scheme:dark}
+.field select:invalid{color:rgba(185,169,158,.72)}
+.field select option{background:#1b1411;color:var(--cream)}
+.field .err{min-height:0;margin:3px 0 0;font-size:9px;color:#f0a08f}
+.field .err:empty{display:none}
+.field.bad input,.field.bad select{border-color:rgba(240,130,110,.75)}
+.consent{display:flex;align-items:flex-start;gap:9px;margin-top:15px;font-size:10px;line-height:1.5;color:var(--muted)}
+.consent input{position:absolute;opacity:0;width:1px;height:1px}
+.consent .box{width:16px;height:16px;flex:none;margin-top:1px;border:1px solid var(--line2);border-radius:4px;background:rgba(255,246,236,.03);position:relative;cursor:pointer}
+.consent input:checked+.box{background:var(--pink);border-color:var(--pink)}
+.consent input:checked+.box::after{content:"";position:absolute;left:5px;top:2px;width:4px;height:8px;border:solid #281612;border-width:0 1.4px 1.4px 0;transform:rotate(42deg)}
+.consent button{display:inline;padding:0;border-bottom:1px solid var(--line2);color:var(--cream2);font-size:inherit}
+.consent .box+span{cursor:pointer}
+.cerr{margin:4px 0 0;font-size:9px;color:#f0a08f}
+.form .btn{width:100%;margin-top:15px;min-height:49px}
+.form .note{margin-top:10px;font-size:9.5px;line-height:1.6;color:var(--muted2)}
+.form .note a{color:var(--cream2);border-bottom:1px solid var(--line2)}
+.success{padding-top:12px;text-align:left}
+.success .ok{display:grid;place-items:center;width:54px;height:54px;margin-bottom:16px;border:1px solid rgba(231,180,166,.45);border-radius:50%;background:rgba(231,180,166,.08);font-size:25px;color:var(--pink)}
+.success h3{font:400 32px/1 var(--serif)}
+.success>p{margin-top:9px;font-size:12px;line-height:1.65;color:var(--muted)}
+.success .sum{margin-top:12px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:rgba(255,246,236,.035);font-size:10.5px;line-height:1.7;color:var(--cream2);white-space:pre-line}
+.success .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.success .acts .btn{flex:1 1 150px;margin:0}
+.success .again{margin-top:13px;padding:0;border-bottom:1px solid var(--line2);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+/* footer */
+.footer{padding:clamp(46px,6vw,74px) 0 0;background:radial-gradient(50% 60% at 80% 0%,rgba(231,180,166,.055),transparent 65%),linear-gradient(155deg,#0d0908,#0a0706)}
+.footer .cta{display:flex;align-items:flex-end;justify-content:space-between;gap:36px;padding-bottom:clamp(36px,5vw,56px);border-bottom:1px solid var(--line)}
+.footer .cta h2{max-width:13ch}
+.footer .cta p{max-width:40ch;margin-top:14px;font-size:12px;line-height:1.7;color:var(--muted)}
+.footer .cta .right{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.footer .cta .tel{font:400 26px/1 var(--serif);color:var(--pink)}
+.footer .cols{display:grid;grid-template-columns:1.45fr .7fr .95fr .7fr;gap:clamp(24px,4vw,52px);padding:clamp(36px,5vw,54px) 0;border-bottom:1px solid var(--line)}
+.footer .brand p{max-width:35ch;margin-top:16px;font-size:11.5px;line-height:1.7;color:var(--muted)}
+.footer .col{display:flex;flex-direction:column;gap:7px;font-size:11px;color:var(--muted)}
+.footer .col b{margin-bottom:3px;font-size:8px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
+.footer .col a{width:fit-content;border-bottom:1px solid transparent}
+.footer .col a:hover{color:var(--cream);border-color:var(--line2)}
+.footer .bottom{display:flex;justify-content:space-between;gap:14px;padding:18px 0;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2)}
+.footer .bottom button{font-size:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit}
+.footer .disc{margin:-5px 0 15px;font-size:7.5px;line-height:1.6;color:rgba(141,126,116,.75)}
+.footer .word{margin-top:4px;font:500 clamp(70px,16vw,245px)/.68 var(--serif);letter-spacing:.05em;text-align:center;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(244,235,226,.13);transform:translateY(10%);user-select:none;pointer-events:none}
+/* mobile bar */
+.mbar{display:none;position:fixed;left:10px;right:10px;bottom:10px;z-index:600;align-items:center;gap:8px;padding:7px;border:1px solid var(--line);border-radius:100px;background:rgba(14,10,9,.84);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 20px 50px -24px #000;opacity:0;visibility:hidden;transform:translateY(12px);transition:.4s var(--ease)}
+.mbar.show{opacity:1;visibility:visible;transform:none}
+.mbar .call{width:43px;height:43px;flex:none;display:grid;place-items:center;border:1px solid var(--line2);border-radius:50%;color:var(--pink)}
+.mbar .call svg,.contacts .ico svg{width:17px;height:17px}
+.mbar .btn{flex:1;min-height:43px;font-size:8px}
+/* dialog */
+dialog{width:min(530px,calc(100% - 26px));max-height:80vh;padding:0;border:1px solid var(--line2);border-radius:21px;background:#17110f;color:var(--cream);box-shadow:0 50px 120px -40px #000}
+dialog::backdrop{background:rgba(5,3,3,.75);backdrop-filter:blur(7px)}
+dialog .dtop{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:18px 20px 13px;border-bottom:1px solid var(--line)}
+dialog h2{font:400 26px/1 var(--serif)}
+dialog .dx{width:33px;height:33px;border:1px solid var(--line2);border-radius:50%;color:var(--muted)}
+dialog .dbody{padding:16px 20px 22px;font-size:12px;line-height:1.7;color:var(--muted)}
+dialog .dbody p+p{margin-top:11px}
+dialog .dbody a{color:var(--pink)}
+/* motion */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.clip{opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.clip.in{opacity:1;transform:none}
+/* responsive */
+@media(max-width:1100px){
+  .nav{display:none}.burger{display:grid}
+  .hero .grid{grid-template-columns:1fr;padding-top:125px;padding-bottom:55px}
+  .hero h1{font-size:clamp(62px,12vw,130px)}
+  .hero-media{justify-self:center;max-width:380px;margin-top:36px}
+  .hero .foot{position:static;transform:none;margin-top:0;padding-bottom:18px;justify-content:space-between}
+  .about .grid{grid-template-columns:1fr;gap:42px}
+  .about .media{max-width:620px}
+  .services .grid{grid-template-columns:repeat(2,1fr)}
+  .gallery .grid{grid-template-columns:repeat(2,1fr)}
+  .gallery figure:nth-child(even){margin-top:0}
+  .booking .grid{grid-template-columns:1fr;gap:32px}
+  .form-card{max-width:660px}
+  .featured .side{display:none}
+  .footer .cta{flex-direction:column;align-items:flex-start;gap:24px}
+  .footer .cta .right{align-items:flex-start}
+  .footer .cols{grid-template-columns:1.3fr .7fr 1fr}
+  .footer .col:last-child{grid-column:2/4}
+}
+@media(max-width:760px){
+  :root{--pad:18px}
+  body{padding-bottom:66px}
+  .panel{border-radius:21px;margin-bottom:6px;width:calc(100% - 12px)}
+  .header{padding:8px}
+  .header .bar{padding:7px 8px 7px 11px}
+  .ha>.tel,.ha>.btn{display:none}
+  .hero h1{font-size:clamp(53px,16.4vw,86px);line-height:.86}
+  .hero .lead{font-size:13px}
+  .hero .actions .btn{flex:1 1 100%}
+  .hero .meta{font-size:7.5px;margin-top:16px}
+  .hero-media{max-width:305px}
+  .s1{left:-6px;bottom:65px}.s2{right:-4px;top:12%}
+  .hero .foot{display:none}
+  .about,.services,.gallery,.booking{padding:62px 0}
+  .about .features{grid-template-columns:1fr;gap:14px}
+  .feature{display:flex;align-items:center;gap:11px}
+  .feature i{margin:0}
+  .about .frame{aspect-ratio:1/1.1;border-radius:120px 20px 20px 20px}
+  .about .hours{display:none}
+  .head{flex-direction:column;align-items:flex-start;gap:18px}
+  .head .aside{text-align:left}
+  .services .grid{grid-template-columns:1fr}
+  .card{min-height:0;padding:21px 19px 17px}
+  .card::before{opacity:.08}
+  .card h3{font-size:30px}
+  .gallery .grid{grid-template-columns:1fr 1fr;gap:9px}
+  .gallery .pic{aspect-ratio:1/1.32;border-radius:14px}
+  .gallery figcaption{display:block;margin-top:7px;font-size:6px}
+  .gallery figcaption b{display:block;font-size:16px}
+  .gallery figcaption span{display:none}
+  .featured{min-height:0;padding:64px 0}
+  .featured .box{padding:22px 19px;border-radius:19px}
+  .featured h2{font-size:39px}
+  .booking h2{font-size:41px}
+  .form-card{padding:19px 16px;border-radius:19px}
+  .row{grid-template-columns:1fr;gap:0}
+  .footer{padding-top:46px}
+  .footer .cta h2{font-size:43px}
+  .footer .cta .right{width:100%}
+  .footer .cta .btn{width:100%}
+  .footer .cols{grid-template-columns:1fr;gap:24px}
+  .footer .brand{grid-column:auto}
+  .footer .col:last-child{grid-column:auto}
+  .footer .bottom{flex-direction:column;gap:7px}
+  .footer .word{font-size:27vw}
+  .mbar{display:flex}
+  .menu nav a{font-size:clamp(32px,10vw,48px)}
+}
+@media(max-width:480px){
+  .logo strong{font-size:14px;letter-spacing:.13em}
+  .logo small{font-size:5.5px}
+  .logo b{width:32px;height:32px}
+  .hero h1{font-size:clamp(49px,15.2vw,66px)}
+  .hero-media{max-width:270px}
+  .s2{display:none}
+  .addr{display:none}
+  .featured h2{font-size:35px}
+  .booking h2{font-size:38px}
+  .footer .cta h2{font-size:38px}
+  .footer .word{font-size:26vw}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.clip{opacity:1!important;transform:none!important;clip-path:none!important}
+  .hero h1 .in{transform:none!important;animation:none!important}
+  .marquee .track{animation:none!important}
+}
 </style>
+<noscript><style>.reveal,.clip{opacity:1!important;transform:none!important}.hero h1 .in{animation:none!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
-<!-- ================= HEADER ================= -->
 <header class="header" id="header">
-  <div class="wrap nav">
-    <a href="#top" class="logo" aria-label="Кариана — на главную">
-      <span class="logo-mark">К</span>
-      <span class="logo-text">
-        <b>Кариана</b>
-        <span>Studio Beauty</span>
-      </span>
-    </a>
-
-    <nav class="nav-links" aria-label="Основная навигация">
-      <a href="#about">О студии</a>
-      <a href="#services">Услуги</a>
-      <a href="#promo">Акции</a>
-      <a href="#contacts">Контакты</a>
+  <div class="bar">
+    <a class="logo" href="#top" aria-label="Кариана — на главную"><b>K</b><span><strong>KARIANA</strong><small>studio beauty</small></span></a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#about">О студии</a><a href="#services">Услуги</a><a href="#atmosphere">Атмосфера</a><a href="#booking">Запись</a><a href="#contacts">Контакты</a>
     </nav>
-
-    <div class="nav-cta">
-      <a class="phone" href="tel:+79252668">925-26-68</a>
-      <a class="btn" href="#booking">Записаться</a>
-      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+    <div class="ha">
+      <a class="tel" href="tel:+79119252668">+7 (911) 925-26-68</a>
+      <a class="btn sm" href="#booking">Записаться</a>
+      <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false"><i></i><i></i></button>
     </div>
   </div>
 </header>
 
-<!-- ================= MOBILE MENU ================= -->
-<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <button class="close" id="closeMenu" aria-label="Закрыть меню">✕</button>
-  <a href="#about">О студии</a>
-  <a href="#services">Услуги</a>
-  <a href="#promo">Акции</a>
-  <a href="#contacts">Контакты</a>
-  <a href="#booking">Записаться</a>
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="top">
+    <a class="logo" href="#top"><b>K</b><span><strong>KARIANA</strong><small>studio beauty</small></span></a>
+    <button class="x" id="closeMenu" type="button" aria-label="Закрыть меню">✕</button>
+  </div>
+  <nav aria-label="Мобильная навигация">
+    <a href="#about"><b>01</b>О студии</a><a href="#services"><b>02</b>Услуги</a><a href="#atmosphere"><b>03</b>Атмосфера</a><a href="#booking"><b>04</b>Запись</a><a href="#contacts"><b>05</b>Контакты</a>
+  </nav>
+  <div class="bottom"><a href="tel:+79119252668">+7 (911) 925-26-68</a><p>Санкт-Петербург, ул. Композиторов, 12А<br>Ежедневно 10:00–21:00</p><a class="btn" href="#booking">Записаться на визит</a></div>
 </div>
 
-<!-- ================= HERO ================= -->
-<main id="top">
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div class="reveal">
-        <p class="eyebrow">Студия красоты · Санкт-Петербург</p>
-        <h1 class="hero-title">
-          Красота
-          <span class="script">в каждой детали</span>
-        </h1>
-        <p class="hero-sub">
-          Косметология, ногтевой сервис, парикмахерский зал, массаж и солярий —
-          всё в одной студии на проспекте Луначарского, 11 к1.
-        </p>
-        <div class="hero-actions">
-          <a class="btn" href="#booking">Записаться →</a>
-          <a class="btn btn--ghost" href="#services">Наши услуги</a>
+<main id="main">
+  <section class="panel hero" id="top">
+    <div class="bg"><span class="word">KARIANA</span><i class="orb o1"></i><i class="orb o2"></i></div>
+    <div class="container grid">
+      <div class="hero-copy">
+        <p class="eyebrow"><i></i>Студия красоты · Санкт-Петербург</p>
+        <h1><span class="line"><span class="in">Красота</span></span><span class="line"><span class="in"><em>в каждой</em></span></span><span class="line"><span class="in">детали.</span></span></h1>
+        <p class="lead">Косметология, ногтевой сервис, парикмахерский зал, массаж и солярий — в одной студии на улице Композиторов, 12А. Без спешки, с вниманием к вам.</p>
+        <div class="actions"><a class="btn" href="#booking">Записаться на визит →</a><a class="btn ghost" href="#services">Смотреть услуги</a></div>
+        <p class="meta">Ежедневно 10:00–21:00 <i></i> м. Проспект Просвещения</p>
+      </div>
+      <div class="hero-media">
+        <div class="portrait clip">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80" alt="Портрет клиентки студии красоты «Кариана»" width="1000" height="1250">
+          <span class="tag">studio beauty</span>
         </div>
-      </div>
-
-      <div class="hero-art reveal" aria-hidden="true">
-        <small>Ежедневно 10:00 — 21:00</small>
+        <div class="stat glass s1"><b>6</b><span>направлений<br>красоты</span></div>
+        <div class="stat glass s2"><b>10–21</b><span>ежедневно<br>без выходных</span></div>
+        <div class="addr glass"><i></i>Композиторов, 12А</div>
       </div>
     </div>
+    <div class="container foot"><span>— Листайте</span><span>Санкт-Петербург · Выборгский район</span></div>
+  </section>
 
-    <div class="hero-features reveal">
-      <div class="feature">
-        <i>✦</i>
-        <div><b>Премиум-уход</b><span>Профессиональные средства</span></div>
-      </div>
-      <div class="feature">
-        <i>✓</i>
-        <div><b>Опытные мастера</b><span>Индивидуальный подход</span></div>
-      </div>
-      <div class="feature">
-        <i>◷</i>
-        <div><b>Запись по звонку</b><span>Ежедневно с 10:00 до 21:00</span></div>
-      </div>
+  <div class="panel marquee" aria-hidden="true">
+    <div class="track">
+      <span>Косметология</span><i>✦</i><span>Ногтевой сервис</span><i>✦</i><span>Парикмахерский зал</span><i>✦</i><span>Массаж и LPG</span><i>✦</i><span>Брови и ресницы</span><i>✦</i><span>Солярий</span><i>✦</i>
+      <span>Косметология</span><i>✦</i><span>Ногтевой сервис</span><i>✦</i><span>Парикмахерский зал</span><i>✦</i><span>Массаж и LPG</span><i>✦</i><span>Брови и ресницы</span><i>✦</i><span>Солярий</span><i>✦</i>
     </div>
   </div>
-</section>
 
-<!-- ================= ABOUT ================= -->
-<section class="about" id="about">
-  <div class="wrap about-grid">
-    <div class="about-copy reveal">
-      <p class="eyebrow">Добро пожаловать в Кариану</p>
-      <h2>Красота. Забота. <span class="script">Уверенность.</span></h2>
-      <p>
-        «Кариана» — уютная студия красоты на Выборгской стороне, где забота о себе
-        начинается с внимания к деталям. Мы объединили косметологию, уход за волосами
-        и ногтями, массаж и солярий в одном пространстве.
-      </p>
-      <p>
-        Каждая процедура — это индивидуальный подход и профессиональные средства.
-        Здесь можно расслабиться, восстановиться и выйти с ощущением лёгкости.
-      </p>
-      <p class="about-sign">Побалуйте себя ♡</p>
+  <section class="panel about" id="about">
+    <div class="container grid">
+      <div class="copy">
+        <p class="eyebrow"><i></i>О студии</p>
+        <h2 class="display reveal">Красота. Забота. <em>Уверенность.</em></h2>
+        <p class="reveal">«Кариана» — уютная студия красоты в Выборгском районе, где забота о себе начинается с внимания к деталям. Мы объединили косметологию, уход за волосами и ногтями, массаж и солярий в одном пространстве.</p>
+        <p class="reveal">Каждая процедура — это индивидуальный подход и профессиональные средства. Здесь можно расслабиться, восстановиться и выйти с ощущением лёгкости.</p>
+        <p class="sign reveal">Побалуйте себя <i>♡</i></p>
+        <div class="features">
+          <div class="feature reveal"><i>✦</i><span><b>Премиум-уход</b><span>Профессиональные средства</span></span></div>
+          <div class="feature reveal"><i>✓</i><span><b>Опытные мастера</b><span>Индивидуальный подход</span></span></div>
+          <div class="feature reveal"><i>◷</i><span><b>Запись по звонку</b><span>Ежедневно 10:00–21:00</span></span></div>
+        </div>
+        <a class="link reveal" href="#booking">Записаться на визит →</a>
+      </div>
+      <figure class="media">
+        <div class="frame clip"><img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&fit=crop&w=1400&q=80" alt="Интерьер студии красоты «Кариана»" width="1400" height="960"></div>
+        <figcaption class="tag glass">Атмосфера спокойствия</figcaption>
+        <div class="hours glass"><small>Открыто</small><b>10:00–21:00</b><span>ежедневно, без выходных</span></div>
+      </figure>
     </div>
+  </section>
 
-    <div class="about-visual reveal">
-      <span class="tag">Атмосфера спокойствия</span>
+  <section class="panel services" id="services">
+    <div class="container">
+      <header class="head">
+        <div><p class="eyebrow reveal"><i></i>Услуги</p><h2 class="display reveal">Всё для вашей <em>красоты</em></h2></div>
+        <div class="aside reveal"><p>Актуальные цены. Точную стоимость и запись уточняйте по телефону <a href="tel:+79119252668">925-26-68</a>.</p><span class="idx">01 — 06</span></div>
+      </header>
+      <div class="grid">
+        <article class="card" style="--img:url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=75')"><div class="top"><span class="num">01</span><span class="ico">✦</span></div><h3>Косметология</h3><p>Уход за лицом и чистка — для здоровой и сияющей кожи.</p><ul class="prices"><li><span>Чистка лица</span><span class="dots"></span><b>1 700 ₽</b></li><li><span>Уход за лицом</span><span class="dots"></span><b>от 500 ₽</b></li><li><span>Массаж лица</span><span class="dots"></span><b>1 000 ₽</b></li><li><span>Депиляция</span><span class="dots"></span><b>от 200 ₽</b></li></ul><button class="cta" type="button" data-book="Косметология">Записаться <span>↗</span></button></article>
+        <article class="card" style="--img:url('https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=75')"><div class="top"><span class="num">02</span><span class="ico">✧</span></div><h3>Ногтевой сервис</h3><p>Маникюр и педикюр с уходом и покрытием гель-лаком.</p><ul class="prices"><li><span>Маникюр</span><span class="dots"></span><b>800 ₽</b></li><li><span>Педикюр</span><span class="dots"></span><b>1 400 ₽</b></li><li><span>Маникюр + шеллак + снятие</span><span class="dots"></span><b>1 200 ₽</b></li><li><span>Педикюр + шеллак + снятие</span><span class="dots"></span><b>1 800 ₽</b></li></ul><p class="note">Покрытие уточняйте у мастера</p><button class="cta" type="button" data-book="Ногтевой сервис">Записаться <span>↗</span></button></article>
+        <article class="card" style="--img:url('https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=75')"><div class="top"><span class="num">03</span><span class="ico">✂</span></div><h3>Парикмахерский зал</h3><p>Стрижки, окрашивание и восстановление волос.</p><ul class="prices"><li><span>Стрижка женская</span><span class="dots"></span><b>1 100 ₽</b></li><li><span>Стрижка мужская</span><span class="dots"></span><b>700 ₽</b></li><li><span>Окрашивание</span><span class="dots"></span><b>от 3 500 ₽</b></li><li><span>Ботокс волос</span><span class="dots"></span><b>4 500 ₽</b></li></ul><button class="cta" type="button" data-book="Парикмахерский зал">Записаться <span>↗</span></button></article>
+        <article class="card" style="--img:url('https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=75')"><div class="top"><span class="num">04</span><span class="ico">≈</span></div><h3>Массаж и LPG</h3><p>Расслабление, тонус и коррекция фигуры.</p><ul class="prices"><li><span>Массаж LPG тела</span><span class="dots"></span><b>850 ₽</b></li><li><span>Классический + лимфодренаж</span><span class="dots"></span><b>1 500 ₽</b></li><li><span>Антицеллюлитный</span><span class="dots"></span><b>1 700 ₽</b></li><li><span>Спина и шея</span><span class="dots"></span><b>1 200 ₽</b></li></ul><button class="cta" type="button" data-book="Массаж и LPG">Записаться <span>↗</span></button></article>
+        <article class="card" style="--img:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=75')"><div class="top"><span class="num">05</span><span class="ico">◉</span></div><h3>Брови и ресницы</h3><p>Выразительный взгляд и ухоженные брови.</p><ul class="prices"><li><span>Окрашивание бровей</span><span class="dots"></span><b>700 ₽</b></li><li><span>Окрашивание ресниц</span><span class="dots"></span><b>700 ₽</b></li><li><span>Коррекция формы</span><span class="dots"></span><b>по запросу</b></li></ul><button class="cta" type="button" data-book="Брови и ресницы">Записаться <span>↗</span></button></article>
+        <article class="card" style="--img:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=75')"><div class="top"><span class="num">06</span><span class="ico">☀</span></div><h3>Солярий</h3><p>Вертикальный и горизонтальный загар в студии.</p><ul class="prices"><li><span>Вертикальный солярий</span><span class="dots"></span><b>от 25 ₽/мин</b></li><li><span>Горизонтальный солярий</span><span class="dots"></span><b>по запросу</b></li><li><span>Абонементы</span><span class="dots"></span><b>по запросу</b></li></ul><p class="note">Абонементы и минуты — у администратора</p><button class="cta" type="button" data-book="Солярий">Записаться <span>↗</span></button></article>
+      </div>
+      <p class="bottom reveal"><span>✦</span> Сезонные акции и свободные окна — <a href="https://vk.com/club64819180" target="_blank" rel="noopener noreferrer">в группе студии</a>.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= SERVICES ================= -->
-<section class="services" id="services">
-  <div class="wrap">
-    <div class="section-head reveal">
+  <section class="panel gallery" id="atmosphere">
+    <div class="container">
+      <header class="head"><div><p class="eyebrow reveal"><i></i>Атмосфера</p><h2 class="display reveal">Моменты, ради которых <em>возвращаются.</em></h2></div><div class="aside reveal"><p>Спокойный свет, тёплые оттенки и мастера, которым можно доверить своё время.</p><span class="idx">04 кадра</span></div></header>
+      <div class="grid">
+        <figure class="clip"><div class="pic"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=75" alt="Работа парикмахерского зала" width="800" height="1100"></div><figcaption>01 <b>Волосы</b> <span>↗</span></figcaption></figure>
+        <figure class="clip"><div class="pic"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=75" alt="Маникюр в студии" width="800" height="1100"></div><figcaption>02 <b>Ногти</b> <span>↗</span></figcaption></figure>
+        <figure class="clip"><div class="pic"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=75" alt="Уход за лицом" width="800" height="1100"></div><figcaption>03 <b>Лицо</b> <span>↗</span></figcaption></figure>
+        <figure class="clip"><div class="pic"><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=75" alt="Массаж в студии" width="800" height="1100"></div><figcaption>04 <b>Тело</b> <span>↗</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel featured">
+    <div class="bgimg"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1600&q=80" alt="" width="1600" height="1000"></div><div class="veil"></div>
+    <div class="container inner">
+      <div class="box glass">
+        <p class="eyebrow"><i></i>Ритуал</p><h2>Уход, который <em>чувствуется.</em></h2><p>Мягкий свет, тёплое полотенце, тишина без спешки. Мы заботимся о деталях, которые замечают не сразу, но чувствуют всегда.</p>
+        <ul class="ticks"><li><i>✦</i>Индивидуальный подход</li><li><i>✦</i>Профессиональные средства</li><li><i>✦</i>Спокойный ритм без спешки</li></ul>
+        <a class="btn" href="#booking">Записаться на уход →</a>
+      </div>
+      <div class="side"><b>01 / 06</b><span>Косметология<br>уход за лицом</span></div>
+    </div>
+  </section>
+
+  <section class="panel booking" id="booking">
+    <div class="bgimg"></div><div class="veil"></div>
+    <div class="container grid">
       <div>
-        <p class="eyebrow">Наши услуги</p>
-        <h2>Всё для вашей <span class="script">красоты</span></h2>
+        <p class="eyebrow reveal"><i></i>Запись</p>
+        <h2 class="display reveal">Выберите время — <em>остальное сделаем мы.</em></h2>
+        <p class="lead reveal">Оставьте телефон, услугу и удобный час. Мы перезвоним, чтобы подтвердить запись и подобрать мастера.</p>
+        <ul class="contacts">
+          <li class="reveal"><span class="ico">⌖</span><span><small>Адрес</small><a href="https://yandex.ru/maps/?text=Санкт-Петербург%2C%20улица%20Композиторов%2C%2012А" target="_blank" rel="noopener noreferrer">ул. Композиторов, 12А</a><em>м. Проспект Просвещения</em></span></li>
+          <li class="reveal"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6.6 3.8 9 8.3 7.4 10a15.4 15.4 0 0 0 6.6 6.6l1.7-1.6 4.5 2.4-.6 3.1c-.2 1.1-1.2 1.9-2.3 1.8C10.9 21.7 2.3 13.1 1.7 6.6c-.1-1.1.7-2.1 1.8-2.3l3.1-.5Z"/></svg></span><span><small>Телефон</small><a href="tel:+79119252668">+7 (911) 925-26-68</a><em>ежедневно 10:00–21:00</em></span></li>
+          <li class="reveal"><span class="ico">◌</span><span><small>Соцсети</small><a href="https://vk.com/club64819180" target="_blank" rel="noopener noreferrer">ВКонтакте</a><em>новости и работы студии</em></span></li>
+        </ul>
       </div>
-      <p>Актуальные цены. Точную стоимость и запись уточняйте по телефону 925-26-68.</p>
+      <div class="form-card glass reveal">
+        <h3>Заявка на визит</h3><p class="sub">Заполните три главных поля — и мы свяжемся с вами.</p>
+        <form class="form" id="form" novalidate>
+          <div class="row">
+            <div class="field"><label for="name">Как вас зовут <span>необязательно</span></label><input id="name" type="text" autocomplete="name" placeholder="Имя" maxlength="60"></div>
+            <div class="field"><label for="phone">Телефон</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required><p class="err" id="phoneErr"></p></div>
+          </div>
+          <div class="field"><label for="service">Услуга</label><select id="service" required><option value="">Выберите услугу</option><option>Косметология</option><option>Ногтевой сервис</option><option>Парикмахерский зал</option><option>Массаж и LPG</option><option>Брови и ресницы</option><option>Солярий</option><option>Нужна консультация</option></select><p class="err" id="serviceErr"></p></div>
+          <div class="row">
+            <div class="field"><label for="date">Желаемая дата <span>необязательно</span></label><input id="date" type="date"></div>
+            <div class="field"><label for="time">Время</label><select id="time" required><option value="">Выберите время</option><option>10:00</option><option>10:30</option><option>11:00</option><option>11:30</option><option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option><option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option></select><p class="err" id="timeErr"></p></div>
+          </div>
+          <div class="field"><label for="comment">Комментарий <span>необязательно</span></label><textarea id="comment" rows="2" maxlength="300" placeholder="Например: удобнее утром, нужен конкретный мастер"></textarea></div>
+          <div class="consent"><input id="consent" type="checkbox" required aria-describedby="consentErr"><label class="box" for="consent" aria-hidden="true"></label><span><label for="consent">Согласен на обработку персональных данных и</label> <button type="button" id="privacyOpen">политику конфиденциальности</button></span></div><p class="cerr" id="consentErr"></p>
+          <button class="btn" type="submit" id="submit">Отправить заявку →</button>
+          <p class="note">После отправки откроется WhatsApp с готовым сообщением — останется нажать «Отправить». Или позвоните: <a href="tel:+79119252668">+7 (911) 925-26-68</a>.</p>
+        </form>
+        <div class="success" id="success" hidden tabindex="-1"><div class="ok">✓</div><h3>Заявка готова</h3><p>Мы подготовили сообщение в WhatsApp. Если окно не открылось, нажмите кнопку ниже — останется отправить сообщение.</p><p class="sum" id="sum"></p><div class="acts"><a class="btn" id="wa" href="https://wa.me/79119252668" target="_blank" rel="noopener noreferrer">Открыть WhatsApp</a><button class="btn ghost" type="button" id="copy">Скопировать заявку</button></div><button class="again" type="button" id="again">Заполнить ещё раз</button></div>
+      </div>
     </div>
+  </section>
+</main>
 
-    <div class="services-grid">
+<footer class="panel footer" id="contacts">
+  <div class="container">
+    <div class="cta"><div><p class="eyebrow"><i></i>До встречи</p><h2 class="display">Позвольте себе <em>время для себя.</em></h2><p>Оставьте заявку или позвоните — подберём время, услугу и мастера.</p></div><div class="right"><a class="btn" href="#booking">Записаться →</a><a class="tel" href="tel:+79119252668">+7 (911) 925-26-68</a></div></div>
+    <div class="cols">
+      <div class="brand"><a class="logo" href="#top"><b>K</b><span><strong>KARIANA</strong><small>studio beauty</small></span></a><p>Студия красоты в Выборгском районе Санкт-Петербурга. Косметология, ногти, волосы, массаж и солярий — в одном пространстве.</p></div>
+      <div class="col"><b>Навигация</b><a href="#about">О студии</a><a href="#services">Услуги</a><a href="#atmosphere">Атмосфера</a><a href="#booking">Запись</a><a href="https://vk.com/club64819180" target="_blank" rel="noopener noreferrer">Акции и новости</a></div>
+      <div class="col"><b>Контакты</b><a href="https://yandex.ru/maps/?text=Санкт-Петербург%2C%20улица%20Композиторов%2C%2012А" target="_blank" rel="noopener noreferrer">ул. Композиторов, 12А</a><a href="tel:+79119252668">+7 (911) 925-26-68</a><span>Ежедневно 10:00–21:00</span><span>м. Проспект Просвещения</span></div>
+      <div class="col"><b>Написать</b><a href="https://wa.me/79119252668" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://vk.com/club64819180" target="_blank" rel="noopener noreferrer">ВКонтакте</a><a href="tel:+79119252668">Позвонить</a></div>
+    </div>
+    <div class="bottom"><span>© 2026 Студия красоты «Кариана»</span><button type="button" id="privacyOpen2">Политика конфиденциальности</button><span>Санкт-Петербург</span></div>
+    <p class="disc">Информация о ценах и услугах носит ознакомительный характер и не является публичной офертой.</p>
+    <div class="word" aria-hidden="true">KARIANA</div>
+  </div>
+</footer>
 
-      <!-- Косметология -->
-      <article class="service reveal">
-        <div class="service-icon">🌸</div>
-        <h3>Косметология</h3>
-        <p>Уход за лицом и чистка — для здоровой и сияющей кожи.</p>
-        <ul class="service-list">
-          <li><span>Чистка лица</span><span class="dots"></span><span class="price">1 700 ₽</span></li>
-          <li><span>Уход за лицом</span><span class="dots"></span><span class="price">от 500 ₽</span></li>
-          <li><span>Массаж лица</span><span class="dots"></span><span class="price">1 000 ₽</span></li>
-          <li><span>Депиляция</span><span class="dots"></span><span class="price">от 200 ₽</span></li>
-        </ul>
-      </article>
+<div class="mbar" id="mbar"><a class="call" href="tel:+79119252668" aria-label="Позвонить"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6.6 3.8 9 8.3 7.4 10a15.4 15.4 0 0 0 6.6 6.6l1.7-1.6 4.5 2.4-.6 3.1c-.2 1.1-1.2 1.9-2.3 1.8C10.9 21.7 2.3 13.1 1.7 6.6c-.1-1.1.7-2.1 1.8-2.3l3.1-.5Z"/></svg></a><a class="btn" href="#booking">Записаться на визит →</a></div>
 
-      <!-- Ногтевой сервис -->
-      <article class="service reveal">
-        <div class="service-icon">💅</div>
-        <h3>Ногтевой сервис</h3>
-        <p>Маникюр и педикюр с уходом и покрытием гель-лаком.</p>
-        <ul class="service-list">
-          <li><span>Маникюр</span><span class="dots"></span><span class="price">800 ₽</span></li>
-          <li><span>Педикюр</span><span class="dots"></span><span class="price">1 400 ₽</span></li>
-          <li><span>Маникюр + шеллак + снятие</span><span class="dots"></span><span class="price">1 200 ₽</span></li>
-          <li><span>Педикюр + шеллак + снятие</span><span class="dots"></span><span class="price">1 800 ₽</span></li>
-        </ul>
-        <p class="service-note">Покрытие уточняйте у мастера</p>
-      </article>
+<dialog id="privacy"><div class="dtop"><h2>Политика конфиденциальности</h2><button class="dx" type="button" id="privacyClose" aria-label="Закрыть">✕</button></div><div class="dbody"><p>Студия красоты «Кариана» использует имя и номер телефона только для связи по заявке на визит: подтверждения записи, переноса времени и уточнения услуги.</p><p>Данные не передаются третьим лицам для рекламы. Обмен сообщениями происходит в WhatsApp; обработка данных в этом сервисе регулируется его правилами.</p><p>Вы можете отказаться от обработки данных, позвонив по телефону <a href="tel:+79119252668">+7 (911) 925-26-68</a>.</p></div></dialog>
 
-      <!-- Парикмахерский зал -->
-      <article class="service reveal">
-        <div class="service-icon">✂</div>
-        <h3>Парикмахерский зал</h3>
-        <p>Стрижки, окрашивание и восстановление волос.</p>
-        <ul class="service-list">
-          <li><span>Стрижка женская</span><span class="dots"></span><span class="price">1 100 ₽</span></li>
-          <li><span>Стрижка мужская</span><span class="dots"></span><span class="price">700 ₽</span></li>
-          <li><span>Окрашивание</span><span class="dots"></span><span class="price">от 3 500 ₽</span></li>
-          <li><span>Ботокс волос</span><span class="dots"></span><span class="price">4 500 ₽</span></li>
-        </ul>
-      </article>
+<script>
+(function(){
+  var d=document, root=d.documentElement, header=d.getElementById('header'), menu=d.getElementById('menu'), burger=d.getElementById('burger'), closeMenu=d.getElementById('closeMenu');
+  var form=d.getElementById('form'), success=d.getElementById('success'), sum=d.getElementById('sum'), wa=d.getElementById('wa'), submit=d.getElementById('submit'), copy=d.getElementById('copy'), again=d.getElementById('again');
+  var phone=d.getElementById('phone'), service=d.getElementById('service'), time=d.getElementById('time'), date=d.getElementById('date'), consent=d.getElementById('consent');
+  var last='', reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      <!-- Массаж -->
-      <article class="service reveal">
-        <div class="service-icon">🤲</div>
-        <h3>Массаж и LPG</h3>
-        <p>Расслабление, тонус и коррекция фигуры.</p>
-        <ul class="service-list">
-          <li><span>Массаж LPG тела</span><span class="dots"></span><span class="price">850 ₽</span></li>
-          <li><span>Классический + лимфодренаж</span><span class="dots"></span><span class="price">1 500 ₽</span></li>
-          <li><span>Антицеллюлитный</span><span class="dots"></span><span class="price">1 700 ₽</span></li>
-          <li><span>Спина и шея</span><span class="dots"></span><span class="price">1 200 ₽</span></li>
-        </ul>
-      </article>
+  function ready(){ root.classList.add('ready'); }
+  addEventListener('load',function(){ setTimeout(ready, 180); });
+  setTimeout(ready, 1700);
 
-      <!-- Брови и ресницы -->
-      <article class="service reveal">
-        <div class="service-icon">👁</div>
-        <h3>Брови и ресницы</h3>
-        <p>Выразительный взгляд и ухоженные брови.</p>
-        <ul class="service-list">
-          <li><span>Окрашивание бровей</span><span class="dots"></span><span class="price">700 ₽</span></li>
-          <li><span>Окрашивание ресниц</span><span class="dots"></span><span class="price">700 ₽</span></li>
-          <li><span>Коррекция формы</span><span class="dots"></span><span class="price">по запросу</span></li>
-        </ul>
-      </article>
+  function onScroll(){
+    var y=scrollY||pageYOffset, max=d.documentElement.scrollHeight-innerHeight;
+    header.classList.toggle('scrolled', y>24);
+    var mbar=d.getElementById('mbar');
+    if(mbar){
+      var b=d.getElementById('booking').getBoundingClientRect();
+      var near=b.top<innerHeight*.92 && b.bottom>innerHeight*.1;
+      mbar.classList.toggle('show', y>500 && y<max-400 && !near && !d.body.classList.contains('menu-open'));
+    }
+    var current='';
+    ['about','services','atmosphere','booking','contacts'].forEach(function(id){var el=d.getElementById(id); if(el && el.offsetTop<=y+innerHeight*.34) current=id;});
+    d.querySelectorAll('.nav a').forEach(function(a){var on=a.getAttribute('href')==='#'+current; a.classList.toggle('active',on); if(on)a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current');});
+  }
+  addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll); onScroll();
 
-      <!-- Солярий -->
-      <article class="service reveal">
-        <div class="service-icon">☀</div>
-        <h3>С
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.08,rootMargin:'0px 0px -8% 0px'});
+    d.querySelectorAll('.reveal,.clip').forEach(function(el){io.observe(el);});
+  }else{d.querySelectorAll('.reveal,.clip').forEach(function(el){el.classList.add('in');});}
+
+  function openMenu(){ d.body.classList.add('menu-open'); menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true'); }
+  function hideMenu(){ d.body.classList.remove('menu-open'); menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',function(){ menu.classList.contains('open')?hideMenu():openMenu(); });
+  closeMenu.addEventListener('click',hideMenu);
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',hideMenu);});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open'))hideMenu();});
+
+  function openPrivacy(){ var p=d.getElementById('privacy'); if(p.showModal)p.showModal(); else p.setAttribute('open',''); }
+  d.getElementById('privacyOpen').addEventListener('click',openPrivacy);
+  d.getElementById('privacyOpen2').addEventListener('click',openPrivacy);
+  d.getElementById('privacyClose').addEventListener('click',function(){d.getElementById('privacy').close();});
+  d.getElementById('privacy').addEventListener('click',function(e){if(e.target===this)this.close();});
+
+  function fmt(v){
+    var x=String(v||'').replace(/\D/g,''); if(!x)return '';
+    if(x[0]==='8')x='7'+x.slice(1); if(x[0]!=='7')x='7'+x; x=x.slice(0,11);
+    var r='+7'; if(x.length>1)r+=' ('+x.slice(1,4); if(x.length>=4)r+=') '+x.slice(4,7); if(x.length>=7)r+='-'+x.slice(7,9); if(x.length>=9)r+='-'+x.slice(9,11); return r;
+  }
+  phone.addEventListener('input',function(){phone.value=fmt(phone.value); clearErr(phone);});
+  function field(el){return el.closest('.field');}
+  function setErr(el,msg){var f=field(el); if(!f)return; f.classList.add('bad'); el.setAttribute('aria-invalid','true'); var p=f.querySelector('.err'); if(p)p.textContent=msg;}
+  function clearErr(el){var f=field(el); if(!f)return; f.classList.remove('bad'); el.removeAttribute('aria-invalid'); var p=f.querySelector('.err'); if(p)p.textContent='';}
+  [service,time].forEach(function(s){s.addEventListener('change',function(){clearErr(s);});});
+  function cErr(msg){var p=d.getElementById('consentErr'); if(p)p.textContent=msg; consent.setAttribute('aria-invalid','true');}
+  function cClear(){var p=d.getElementById('consentErr'); if(p)p.textContent=''; consent.removeAttribute('aria-invalid');}
+  consent.addEventListener('change',cClear);
+  (function(){var n=new Date(),m=String(n.getMonth()+1).padStart(2,'0'),dd=String(n.getDate()).padStart(2,'0'); date.min=n.getFullYear()+'-'+m+'-'+dd;})();
+
+  function dateFmt(v){if(!v)return 'на согласование'; var p=v.split('-'); return p[2]+'.'+p[1]+'.'+p[0];}
+  function msg(){
+    return ['Здравствуйте! Хочу записаться в студию «Кариана».','Имя: '+(d.getElementById('name').value.trim()||'не указано'),'Телефон: '+phone.value,'Услуга: '+service.value,'Дата: '+dateFmt(date.value),'Время: '+time.value,'Комментарий: '+(d.getElementById('comment').value.trim()||'без комментария')].join('\n');
+  }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); var bad=null;
+    if(phone.value.replace(/\D/g,'').length!==11){setErr(phone,'Введите номер телефона полностью.');bad=bad||phone;}else clearErr(phone);
+    if(!service.value){setErr(service,'Выберите услугу.');bad=bad||service;}else clearErr(service);
+    if(!time.value){setErr(time,'Выберите удобное время.');bad=bad||time;}else clearErr(time);
+    if(!consent.checked){cErr('Подтвердите согласие на обработку данных.');bad=bad||consent;}else cClear();
+    if(bad){bad.focus();return;}
+    last=msg();
+    var url='https://wa.me/79119252668?text='+encodeURIComponent(last);
+    wa.href=url; sum.textContent='Услуга: '+service.value+'\nТелефон: '+phone.value+'\nДата: '+dateFmt(date.value)+'\nВремя: '+time.value;
+    form.hidden=true; success.hidden=false; success.focus({preventScroll:true}); submit.disabled=true;
+    window.open(url,'_blank','noopener,noreferrer');
+  });
+  copy.addEventListener('click',function(){var t=copy.textContent; if(navigator.clipboard)navigator.clipboard.writeText(last).catch(function(){}); copy.textContent='Скопировано'; setTimeout(function(){copy.textContent=t;},1600);});
+  again.addEventListener('click',function(){form.reset();form.hidden=false;success.hidden=true;submit.disabled=false;phone.value='';[phone,service,time,date].forEach(clearErr);cClear();d.getElementById('name').focus();});
+
+  d.querySelectorAll('[data-book]').forEach(function(b){b.addEventListener('click',function(){service.value=b.getAttribute('data-book');clearErr(service);d.getElementById('booking').scrollIntoView({behavior:reduced?'auto':'smooth'});setTimeout(function(){phone.focus({preventScroll:true});},reduced?0:650);});});
+})();
+</script>
+</body>
+</html>
